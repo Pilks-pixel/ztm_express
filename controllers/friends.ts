@@ -4,7 +4,7 @@ function getFriends(req, res) {
   if (friends.length === 0) {
     res.status(404).json("No friends found");
   } else {
-    res.json(friends);
+    res.status(200).json(friends);
   }
 }
 
@@ -18,11 +18,15 @@ function getFriendById(req, res) {
 }
 
 function addFriend(req, res) {
-  friends.push({
-    id: friends.length,
-    name: req.body.name,
-  });
-  res.json(friends);
+  if (!req.body.name) {
+    res.status(400).json("Name is required");
+  } else {
+    friends.push({
+      id: friends.length,
+      name: req.body.name,
+    });
+    res.status(201).json(friends);
+  }
 }
 
 export { getFriends, getFriendById, addFriend };

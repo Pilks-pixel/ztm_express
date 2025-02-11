@@ -1,7 +1,7 @@
-// const express = require("express");
 import express from "express";
 
-import { getFriends, getFriendById, addFriend } from "./controllers/friends.ts";
+// import { getFriends, getFriendById, addFriend } from "./controllers/friends.ts";
+import friendRoutes from "./routes/friends.ts";
 
 const app = express();
 const port = 3000;
@@ -17,17 +17,18 @@ function logTime(req, res, next) {
 
 app.use(express.json());
 app.use(logTime);
-// app.use(getTotalTime);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.get("/friends", getFriends);
+app.use("/friends", friendRoutes);
 
-app.get("/friends/:id", getFriendById);
+// app.get("/friends", getFriends);
 
-app.post("/friends", addFriend);
+// app.get("/friends/:id", getFriendById);
+
+// app.post("/friends", addFriend);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
