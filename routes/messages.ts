@@ -3,7 +3,7 @@ const router = express.Router();
 
 import { getMessages } from "../controllers/messages.ts";
 
-// import path from "node:path";
+router.use("/site", express.static("public"));
 
 router.get("/", getMessages);
 
