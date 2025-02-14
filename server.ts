@@ -1,7 +1,7 @@
 import express from "express";
 
-// import { getFriends, getFriendById, addFriend } from "./controllers/friends.ts";
 import friendRoutes from "./routes/friends.ts";
+import messageRoutes from "./routes/messages.ts";
 
 const app = express();
 const port = 3000;
@@ -23,12 +23,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/friends", friendRoutes);
-
-// app.get("/friends", getFriends);
-
-// app.get("/friends/:id", getFriendById);
-
-// app.post("/friends", addFriend);
+app.use("/messages", messageRoutes);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
